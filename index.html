@@ -399,6 +399,25 @@
     color: var(--primary-foreground);
     transition: all 0.3s ease;
 }
+
+        .dark .dropdown-menu {
+    background: #000 ;
+}
+
+.dark .dropdown-item {
+    color: #fff ;
+}
+
+.dark .dropdown-item:hover {
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--primary) !important;
+}
+
+.outline-book {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(212,175,55,0.15);
+}
     </style>
 </head>
 <body>
@@ -427,7 +446,7 @@
             <span>Services</span>
             <i class="fas fa-chevron-down ml-2 text-xs"></i>
         </a>
-        <div class="dropdown-menu absolute left-0 mt-2 min-w-[220px] rounded-xl shadow-lg glass-effect border border-[var(--border)] opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50">
+        <div class="dropdown-menu absolute left-0 mt-2 min-w-[220px] rounded-xl shadow-lg glass-effect border border-[var(--border)] opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 bg-white">
             <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
                 <i class="fas fa-scissors"></i>
                 <span>Signature Cut & Style</span>
@@ -1602,21 +1621,70 @@ document.addEventListener('DOMContentLoaded', function() {
         function updateActiveMenu() {
     const sections = ['home', 'about', 'services', 'portfolio', 'team', 'contact'];
     const scrollPos = window.scrollY + 100; // Offset for header height
-    let activeSection = sections[0];
 
+    const bookSection = document.getElementById('book');
+    const contactSection = document.getElementById('contact');
+    const teamSection = document.getElementById('team');
+    const bookNowBtn = document.querySelector('.btn-primary.mobile-hidden');
+
+    // Helper: get section bottom
+    function getSectionBottom(section) {
+        return section ? section.offsetTop + section.offsetHeight : 0;
+    }
+
+    // If in Contact section
+    if (contactSection && scrollPos >= contactSection.offsetTop - 100 && scrollPos < getSectionBottom(contactSection)) {
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#contact') {
+                link.classList.add('active');
+            }
+        });
+        if (bookNowBtn) bookNowBtn.classList.remove('outline-book');
+        return;
+    }
+
+    // If in Book section (but not Contact)
+    if (bookSection && scrollPos >= bookSection.offsetTop - 100 && (!contactSection || scrollPos < contactSection.offsetTop - 100)) {
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+        if (bookNowBtn) bookNowBtn.classList.add('outline-book');
+        return;
+    }
+
+    // If after Team and before Book
+    if (
+        teamSection &&
+        bookSection &&
+        scrollPos >= getSectionBottom(teamSection) - 100 &&
+        scrollPos < bookSection.offsetTop - 100
+    ) {
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+        if (bookNowBtn) bookNowBtn.classList.remove('outline-book');
+        return;
+    }
+
+    // If after Contact (bottom of page)
+    if (contactSection && scrollPos >= getSectionBottom(contactSection) - 100) {
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+        if (bookNowBtn) bookNowBtn.classList.remove('outline-book');
+        return;
+    }
+
+    // Otherwise, activate the current section menu item
+    let activeSection = null;
     for (let i = 0; i < sections.length; i++) {
         const section = document.getElementById(sections[i]);
         if (section && section.offsetTop <= scrollPos) {
             activeSection = sections[i];
         }
     }
-
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${activeSection}`) {
+        if (activeSection && link.getAttribute('href') === `#${activeSection}`) {
             link.classList.add('active');
         }
     });
+    if (bookNowBtn) bookNowBtn.classList.remove('outline-book');
 }
 
 window.addEventListener('scroll', updateActiveMenu);
