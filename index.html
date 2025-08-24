@@ -1,495 +1,179 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LuxeSalon - Premium Hair Artistry</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --background: oklch(1 0 0);
-            --foreground: oklch(0.145 0 0);
-            --card: oklch(1 0 0);
-            --card-foreground: oklch(0.145 0 0);
-            --popover: oklch(1 0 0);
-            --popover-foreground: oklch(0.145 0 0);
-            --primary: oklch(0.7 0.15 85);
-            --primary-foreground: oklch(0.145 0 0);
-            --secondary: oklch(0.97 0 0);
-            --secondary-foreground: oklch(0.145 0 0);
-            --muted: oklch(0.97 0 0);
-            --muted-foreground: oklch(0.556 0 0);
-            --accent: oklch(0.7 0.15 85);
-            --accent-foreground: oklch(0.145 0 0);
-            --destructive: oklch(0.577 0.245 27.325);
-            --destructive-foreground: oklch(0.985 0 0);
-            --border: oklch(0.922 0 0);
-            --input: oklch(1 0 0);
-            --ring: oklch(0.7 0.15 85 / 0.5);
-            --radius: 0.5rem;
-        }
-
-        .dark {
-            --background: oklch(0.145 0 0);
-            --foreground: oklch(0.985 0 0);
-            --card: oklch(0.205 0 0);
-            --card-foreground: oklch(0.985 0 0);
-            --popover: oklch(0.205 0 0);
-            --popover-foreground: oklch(0.985 0 0);
-            --primary: oklch(0.7 0.15 85);
-            --primary-foreground: oklch(0.145 0 0);
-            --secondary: oklch(0.269 0 0);
-            --secondary-foreground: oklch(0.985 0 0);
-            --muted: oklch(0.269 0 0);
-            --muted-foreground: oklch(0.708 0 0);
-            --accent: oklch(0.7 0.15 85);
-            --accent-foreground: oklch(0.145 0 0);
-            --destructive: oklch(0.577 0.245 27.325);
-            --destructive-foreground: oklch(0.985 0 0);
-            --border: oklch(0.269 0 0);
-            --input: oklch(0.205 0 0);
-            --ring: oklch(0.7 0.15 85 / 0.5);
-        }
-
-        body {
-            background-color: var(--background);
-            color: var(--foreground);
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Custom animations and styles for luxury salon */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: -200% 0;
-            }
-            100% {
-                background-position: 200% 0;
-            }
-        }
-
-        .nav-link.active {
-    background: var(--primary);
-    color: var(--primary-foreground);
-    box-shadow: 0 4px 16px rgba(212,175,55,0.12);
-    font-weight: 600;
-}
-.nav-link.active i {
-    color: var(--primary-foreground);
-}
-
-        /* Mobile dropdown item hover effect */
-.dropdown-item {
-    transition: background 0.2s, transform 0.2s, color 0.2s;
-    color: var(--foreground);
-}
-.dropdown-item:hover {
-    background: rgba(212, 175, 55, 0.08);
-    color: var(--primary);
-    transform: scale(1.05);
-}
-.dark .dropdown-item {
-    color: var(--card-foreground);
-}
-.dark .dropdown-item:hover {
-    background: rgba(212, 175, 55, 0.15);
-    color: var(--primary);
-}
-
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .animate-slide-in-left {
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        .animate-slide-in-right {
-            animation: slideInRight 0.8s ease-out;
-        }
-
-        .shimmer {
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 2s infinite;
-        }
-
-        .glass-effect {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .dark .glass-effect {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #d4af37, #f4e4a6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .hover-lift:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--primary-foreground);
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius);
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        .card {
-            background: var(--card);
-            color: var(--card-foreground);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .input {
-            background: var(--input);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 0.75rem;
-            width: 100%;
-            color: var(--foreground);
-        }
-
-        .badge {
-            background: var(--primary);
-            color: var(--primary-foreground);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--card);
-            border-radius: var(--radius);
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .faq-item {
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            background: var(--card);
-            padding: 1rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: between;
-            align-items: center;
-            transition: background 0.3s ease;
-        }
-
-        .faq-question:hover {
-            background: var(--muted);
-        }
-
-        .faq-answer {
-            padding: 0 1rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-        }
-
-        .faq-answer.active {
-            max-height: 200px;
-            padding: 1rem;
-        }
-
-        .team-tab {
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius);
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--muted-foreground);
-        }
-
-        .team-tab.active {
-            background: var(--primary);
-            color: var(--primary-foreground);
-        }
-
-        .team-content {
-            display: none;
-        }
-
-        .team-content.active {
-            display: block;
-        }
-
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .slider-dot.active {
-            background: var(--primary);
-            transform: scale(1.25);
-        }
-
-        .hero-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    pointer-events: none; /* Prevent interaction when not active */
-}
-
-.hero-slide.active {
-    opacity: 1;
-    pointer-events: auto; /* Allow interaction only for active slide */
-}
-
-        .testimonial-slide {
-            display: none;
-        }
-
-        .testimonial-slide.active {
-            display: block;
-        }
-
-        .mobile-menu{
-            display: none;
-        }
-        
-
-        /* Smooth dropdown animation */
-.dropdown-menu {
-    transform: translateY(10px);
-    transition: opacity 0.3s, transform 0.3s;
-}
-.group:hover .dropdown-menu {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-}
-
-/* Dropdown item hover effect */
-.dropdown-item {
-    transition: background 0.2s, transform 0.2s;
-}
-.dropdown-item:hover {
-    background: rgba(212, 175, 55, 0.08);
-    transform: scale(1.05);
-}
-
-        /* Responsive utilities */
-        @media (max-width: 768px) {
-            .mobile-hidden {
-                display: none;
-            }
-            
-            .mobile-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--card);
-                border-top: 1px solid var(--border);
-                padding: 1rem;
-            }
-            
-            .mobile-menu.active {
-                display: block;
-            }
-
-            
-        }
-        .nav-link:hover {
-    background: var(--primary);
-    color: var(--primary-foreground);
-    box-shadow: 0 4px 16px rgba(212,175,55,0.12);
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-.nav-link:hover i {
-    color: var(--primary-foreground);
-    transition: all 0.3s ease;
-}
-
-        .dark .dropdown-menu {
-    background: #000 ;
-}
-
-.dark .dropdown-item {
-    color: #fff ;
-}
-
-.dark .dropdown-item:hover {
-    background: rgba(212, 175, 55, 0.15);
-    color: var(--primary) !important;
-}
-
-.outline-book {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
-    box-shadow: 0 0 0 4px rgba(212,175,55,0.15);
-}
-    </style>
+    <!-- Google Fonts for "Inter" font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png"
+        href="https://theuntoldpath.com/wp-content/uploads/2025/08/LuxeSalon-Demo-Logo-JPG.jpg">
 </head>
-<body>
-    <!-- Transparent Blurry Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-effect rounded-xl m-4 shadow-lg">
-    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div class="flex items-center space-x-2">
-            <i class="fas fa-crown text-2xl" style="color: var(--primary);"></i>
-            <span class="text-2xl font-bold gradient-text">LuxeSalon</span>
-        </div>
 
-            <!-- Desktop Navigation -->
-            <nav class="hidden lg:flex items-center space-x-4 top-0 left-0 right-0 z-50 glass-effect rounded-xl m-0 p-1.5 shadow-lg">
-    <a href="#home" class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
-        <i class="fas fa-home"></i>
-        <span>Home</span>
-    </a>
-    <a href="#about" class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
-        <i class="fas fa-info-circle"></i>
-        <span>About</span>
-    </a>
-    <!-- Services Dropdown -->
-    <div class="relative group">
-        <a href="#services" class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10 focus:outline-none">
-            <i class="fas fa-cut"></i>
-            <span>Services</span>
-            <i class="fas fa-chevron-down ml-2 text-xs"></i>
-        </a>
-        <div class="dropdown-menu absolute left-0 mt-2 min-w-[220px] rounded-xl shadow-lg glass-effect border border-[var(--border)] opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 bg-white">
-            <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
-                <i class="fas fa-scissors"></i>
-                <span>Signature Cut & Style</span>
-            </a>
-            <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
-                <i class="fas fa-palette"></i>
-                <span>Premium Color Service</span>
-            </a>
-            <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
-                <i class="fas fa-spa"></i>
-                <span>Luxury Treatment</span>
-            </a>
-            <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
-                <i class="fas fa-ring"></i>
-                <span>Bridal Package</span>
-            </a>
-            <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
-                <i class="fas fa-grip-lines"></i>
-                <span>Hair Extensions</span>
-            </a>
-            <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
-                <i class="fas fa-male"></i>
-                <span>Men's Grooming</span>
-            </a>
+<body>
+
+
+    <!-- Go Top Button -->
+    <button id="go-top-btn"
+        class="fixed bottom-32 right-8 p-4 bg-gray-800 text-white rounded-full shadow-lg z-50 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- WhatsApp Button & Widget Container -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <!-- Main WhatsApp Button -->
+        <button id="whatsapp-btn"
+            class="relative w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white shadow-xl hover:bg-green-600 transition-colors duration-300 focus:outline-none">
+            <i class="fab fa-whatsapp text-3xl"></i>
+            <!-- Optional: Pulsing ring effect on the button itself -->
+            <span
+                class="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-pulse-light"></span>
+        </button>
+
+        <!-- WhatsApp Widget -->
+        <div id="whatsapp-widget-container"
+            class="absolute bottom-20 right-0 w-80 bg-white rounded-xl shadow-2xl overflow-hidden">
+            <!-- Widget Header -->
+            <div class="relative bg-gradient-to-r from-green-500 to-green-600 p-2 rounded-t-xl text-white">
+                <div class="flex items-center space-x-4">
+                    <!-- Brand Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/LuxeSalon-Demo-Logo-JPG.jpg"
+                        alt="Brand Logo" class="w-10 h-10 rounded-full shadow-md"
+                        style="background-color: var(--primary);">
+                    <div>
+                        <h3 class="font-bold text-lg">Luxe Salon</h3>
+                        <div class="flex items-center space-x-1 text-sm font-medium">
+                            <span class="relative flex h-2 w-2">
+                                <span
+                                    class="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-green-200 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-green-300"></span>
+                            </span>
+                            <span>Typically replies within an hour</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Close Button -->
+                <button id="widget-close-btn"
+                    class="absolute top-3 right-3 text-white hover:text-gray-200 focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Chat Message Area -->
+            <div class="p-4 bg-gray-50 no-scrollbar h-52 overflow-y-auto">
+                <!-- Pre-filled Message -->
+                <div class="max-w-[80%] bg-gray-200 text-gray-800 p-3 rounded-xl rounded-bl-none shadow-sm">
+                    <p>Hi! How can we help you?</p>
+                </div>
+            </div>
+
+            <!-- User Input and Send Area -->
+            <div class="p-4 bg-white border-t border-gray-200">
+                <div class="flex items-center space-x-2">
+                    <input type="text" id="user-input" placeholder="Type your message..."
+                        class="flex-1 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors duration-200">
+                    <button id="send-btn"
+                        class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors duration-300 focus:outline-none">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-    <a href="#portfolio" class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
-        <i class="fas fa-images"></i>
-        <span>Portfolio</span>
-    </a>
-    <a href="#team" class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
-        <i class="fas fa-users"></i>
-        <span>Team</span>
-    </a>
-    <a href="#contact" class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
-        <i class="fas fa-envelope"></i>
-        <span>Contact</span>
-    </a>
-</nav>
+
+
+
+    <!-- Transparent Blurry Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-effect rounded-xl m-4 shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-crown text-2xl" style="color: var(--primary);"></i>
+                <span class="text-2xl font-bold gradient-text">LuxeSalon</span>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav
+                class="hidden lg:flex items-center space-x-4 top-0 left-0 right-0 z-50 glass-effect rounded-xl m-0 p-1.5 shadow-lg">
+                <a href="#home"
+                    class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#about"
+                    class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+                <!-- Services Dropdown -->
+                <div class="relative group">
+                    <a href="#services"
+                        class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10 focus:outline-none">
+                        <i class="fas fa-cut"></i>
+                        <span>Services</span>
+                        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                    </a>
+                    <div
+                        class="dropdown-menu absolute left-0 mt-2 min-w-[220px] rounded-xl shadow-lg glass-effect border border-[var(--border)] opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 bg-white">
+                        <a href="#services"
+                            class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
+                            <i class="fas fa-scissors"></i>
+                            <span>Signature Cut & Style</span>
+                        </a>
+                        <a href="#services"
+                            class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
+                            <i class="fas fa-palette"></i>
+                            <span>Premium Color Service</span>
+                        </a>
+                        <a href="#services"
+                            class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
+                            <i class="fas fa-spa"></i>
+                            <span>Luxury Treatment</span>
+                        </a>
+                        <a href="#services"
+                            class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
+                            <i class="fas fa-ring"></i>
+                            <span>Bridal Package</span>
+                        </a>
+                        <a href="#services"
+                            class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
+                            <i class="fas fa-grip-lines"></i>
+                            <span>Hair Extensions</span>
+                        </a>
+                        <a href="#services"
+                            class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
+                            <i class="fas fa-male"></i>
+                            <span>Men's Grooming</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#portfolio"
+                    class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
+                    <i class="fas fa-images"></i>
+                    <span>Portfolio</span>
+                </a>
+                <a href="#team"
+                    class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
+                    <i class="fas fa-users"></i>
+                    <span>Team</span>
+                </a>
+                <a href="#contact"
+                    class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </nav>
 
             <div class="flex items-center space-x-4">
                 <!-- Theme Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <button id="theme-toggle"
+                    class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                     <i class="fas fa-moon" id="theme-icon"></i>
                 </button>
 
@@ -508,71 +192,86 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu">
             <nav class="flex flex-col space-y-4">
-    <a href="#home" class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
-        <i class="fas fa-home"></i>
-        <span>Home</span>
-    </a>
-    <a href="#about" class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
-        <i class="fas fa-info-circle"></i>
-        <span>About</span>
-    </a>
-    <!-- Services Dropdown for Mobile -->
-    <div class="relative">
-    <div class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 w-full cursor-default" style="background: var(--muted); color: var(--foreground);">
-        <i class="fas fa-cut"></i>
-        <span>Services</span>
-    </div>
-    <div class="mt-2 min-w-[220px] rounded-xl shadow-lg glass-effect border border-[var(--border)] z-50">
-        <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
-            <i class="fas fa-scissors"></i>
-            <span>Signature Cut & Style</span>
-        </a>
-        <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
-            <i class="fas fa-palette"></i>
-            <span>Premium Color Service</span>
-        </a>
-        <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
-            <i class="fas fa-spa"></i>
-            <span>Luxury Treatment</span>
-        </a>
-        <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
-            <i class="fas fa-ring"></i>
-            <span>Bridal Package</span>
-        </a>
-        <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
-            <i class="fas fa-grip-lines"></i>
-            <span>Hair Extensions</span>
-        </a>
-        <a href="#services" class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
-            <i class="fas fa-male"></i>
-            <span>Men's Grooming</span>
-        </a>
-    </div>
-</div>
-    <a href="#portfolio" class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
-        <i class="fas fa-images"></i>
-        <span>Portfolio</span>
-    </a>
-    <a href="#team" class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
-        <i class="fas fa-users"></i>
-        <span>Team</span>
-    </a>
-    <a href="#contact" class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
-        <i class="fas fa-envelope"></i>
-        <span>Contact</span>
-    </a>
-    <button class="btn-primary w-full" onclick="scrollToSection('book')">Book Now</button>
-</nav>
+                <a href="#home"
+                    class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#about"
+                    class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+                <!-- Services Dropdown for Mobile -->
+                <div class="relative">
+                    <div class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 w-full cursor-default"
+                        style="background: var(--muted); color: var(--foreground);">
+                        <i class="fas fa-cut"></i>
+                        <span>Services</span>
+                    </div>
+                    <div
+                        class="mt-2 min-w-[220px] rounded-xl shadow-lg glass-effect border border-[var(--border)] z-50">
+                        <a href="#services"
+                            class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
+                            <i class="fas fa-scissors"></i>
+                            <span>Signature Cut & Style</span>
+                        </a>
+                        <a href="#services"
+                            class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
+                            <i class="fas fa-palette"></i>
+                            <span>Premium Color Service</span>
+                        </a>
+                        <a href="#services"
+                            class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
+                            <i class="fas fa-spa"></i>
+                            <span>Luxury Treatment</span>
+                        </a>
+                        <a href="#services"
+                            class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
+                            <i class="fas fa-ring"></i>
+                            <span>Bridal Package</span>
+                        </a>
+                        <a href="#services"
+                            class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
+                            <i class="fas fa-grip-lines"></i>
+                            <span>Hair Extensions</span>
+                        </a>
+                        <a href="#services"
+                            class="dropdown-item flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:scale-105">
+                            <i class="fas fa-male"></i>
+                            <span>Men's Grooming</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#portfolio"
+                    class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
+                    <i class="fas fa-images"></i>
+                    <span>Portfolio</span>
+                </a>
+                <a href="#team"
+                    class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
+                    <i class="fas fa-users"></i>
+                    <span>Team</span>
+                </a>
+                <a href="#contact"
+                    class="nav-link flex items-center space-x-2 rounded-full px-4 py-2 transition-colors hover:bg-primary/10">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+                <button class="btn-primary w-full" onclick="scrollToSection('book')">Book Now</button>
+            </nav>
         </div>
     </header>
 
     <!-- Hero Slider -->
     <section id="home" class="relative h-screen overflow-hidden">
-        <div class="hero-slide active" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;">
+        <div class="hero-slide active"
+            style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;">
             <div class="relative h-full flex items-center justify-center text-center text-white">
                 <div class="max-w-4xl mx-auto px-4 animate-fade-in-up">
                     <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">Luxury Hair Transformation</h1>
-                    <p class="text-xl md:text-2xl mb-8 text-gray-200">Experience the pinnacle of hair artistry with our master stylists</p>
+                    <p class="text-xl md:text-2xl mb-8 text-gray-200">Experience the pinnacle of hair artistry with our
+                        master stylists</p>
                     <button class="btn-primary text-lg px-8 py-4 hover-lift" onclick="scrollToSection('services')">
                         Discover Our Services
                         <i class="fas fa-arrow-right ml-2"></i>
@@ -581,11 +280,13 @@
             </div>
         </div>
 
-        <div class="hero-slide" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80') center/cover;">
+        <div class="hero-slide"
+            style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80') center/cover;">
             <div class="relative h-full flex items-center justify-center text-center text-white">
                 <div class="max-w-4xl mx-auto px-4 animate-fade-in-up">
                     <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">Premium Color Artistry</h1>
-                    <p class="text-xl md:text-2xl mb-8 text-gray-200">Transform your look with our signature color techniques</p>
+                    <p class="text-xl md:text-2xl mb-8 text-gray-200">Transform your look with our signature color
+                        techniques</p>
                     <button class="btn-primary text-lg px-8 py-4 hover-lift" onclick="scrollToSection('services')">
                         View Color Services
                         <i class="fas fa-arrow-right ml-2"></i>
@@ -594,11 +295,13 @@
             </div>
         </div>
 
-        <div class="hero-slide" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80') center/cover;">
+        <div class="hero-slide"
+            style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80') center/cover;">
             <div class="relative h-full flex items-center justify-center text-center text-white">
                 <div class="max-w-4xl mx-auto px-4 animate-fade-in-up">
                     <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">Bridal Excellence</h1>
-                    <p class="text-xl md:text-2xl mb-8 text-gray-200">Make your special day unforgettable with our bridal services</p>
+                    <p class="text-xl md:text-2xl mb-8 text-gray-200">Make your special day unforgettable with our
+                        bridal services</p>
                     <button class="btn-primary text-lg px-8 py-4 hover-lift" onclick="scrollToSection('book')">
                         Book Bridal Consultation
                         <i class="fas fa-arrow-right ml-2"></i>
@@ -615,7 +318,8 @@
         </div>
 
         <!-- Auto-play toggle -->
-        <button id="autoplay-toggle" class="absolute top-1/2 right-4 transform -translate-y-1/2 text-white hover:bg-white/10 p-2 rounded">
+        <button id="autoplay-toggle"
+            class="absolute top-1/2 right-4 transform -translate-y-1/2 text-white hover:bg-white/10 p-2 rounded">
             <i class="fas fa-pause" id="autoplay-icon"></i>
         </button>
     </section>
@@ -627,8 +331,10 @@
                 <div class="animate-slide-in-left">
                     <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">About LuxeSalon</h2>
                     <p class="text-lg mb-6" style="color: var(--muted-foreground);">
-                        For over a decade, LuxeSalon has been the premier destination for discerning clients seeking exceptional
-                        hair artistry. Our team of master stylists combines traditional techniques with cutting-edge innovations
+                        For over a decade, LuxeSalon has been the premier destination for discerning clients seeking
+                        exceptional
+                        hair artistry. Our team of master stylists combines traditional techniques with cutting-edge
+                        innovations
                         to deliver transformative experiences.
                     </p>
                     <div class="grid grid-cols-2 gap-6 mb-8">
@@ -665,7 +371,8 @@
                     </div>
                 </div>
                 <div class="animate-slide-in-right">
-                    <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=836&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Luxury Salon Interior" class="rounded-lg shadow-2xl hover-lift w-full">
+                    <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=836&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Luxury Salon Interior" class="rounded-lg shadow-2xl hover-lift w-full">
                 </div>
             </div>
         </div>
@@ -677,7 +384,8 @@
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Premium Services</h2>
                 <p class="text-xl max-w-3xl mx-auto" style="color: var(--muted-foreground);">
-                    Indulge in our signature services, each crafted to deliver exceptional results using the finest products
+                    Indulge in our signature services, each crafted to deliver exceptional results using the finest
+                    products
                     and techniques.
                 </p>
             </div>
@@ -688,19 +396,236 @@
         </div>
     </section>
 
-    <!-- Portfolio/Gallery -->
-    <section id="portfolio" class="py-20" style="background: var(--secondary);">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Before & After Gallery</h2>
-                <p class="text-xl max-w-3xl mx-auto" style="color: var(--muted-foreground);">
-                    Witness the transformative power of our artistry through these stunning before and after showcases.
-                </p>
+
+    <!-- Before and After Gallery with Slider -->
+    <section id="portfolio" class="py-20" style="background: var(--secondary); padding: 4rem 1rem;">
+        <div class="max-w-7xl mx-auto text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Before & After Gallery</h2>
+            <p class="text-xl max-w-3xl mx-auto" style="color: var(--muted-foreground);">
+                Witness the transformative power of our artistry through these stunning before and after showcases.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+
+            <!-- Gallery Item 1 -->
+            <div
+                class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="before-after-container relative w-full h-full">
+                    <!-- After Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_5qms615qms615qms.png"
+                        alt="After Photo 1" class="after-image w-full h-full object-cover rounded-3xl">
+
+                    <!-- Before Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_h04l3jh04l3jh04l.png"
+                        alt="Before Photo 1" class="before-image absolute top-0 left-0 h-full object-cover rounded-3xl"
+                        style="width: 50%;">
+
+                    <!-- Before Badge -->
+                    <div
+                        class="absolute top-4 left-4 z-10 bg-gray-900 bg-opacity-70 text-white text-sm font-bold px-3 py-1 rounded-full">
+                        Before
+                    </div>
+
+                    <!-- After Badge -->
+                    <div
+                        class="absolute top-4 right-4 z-10 bg-teal-600 bg-opacity-70 text-white text-sm font-bold px-3 py-1 rounded-full">
+                        After
+                    </div>
+
+                    <!-- Slider Handle & Line -->
+                    <div class="slider-handle">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div class="slider-line"></div>
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8" id="portfolio-grid">
-                <!-- Portfolio items will be populated by JavaScript -->
+            <!-- Gallery Item 2 -->
+            <div
+                class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="before-after-container relative w-full h-full">
+                    <!-- After Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_vlw9w3vlw9w3vlw9.png"
+                        alt="After Photo 2" class="after-image w-full h-full object-cover rounded-3xl">
+                    <!-- Before Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_n5ppb9n5ppb9n5pp.png"
+                        alt="Before Photo 2" class="before-image absolute top-0 left-0 h-full object-cover rounded-3xl"
+                        style="width: 50%;">
+
+                    <!-- Before Badge -->
+                    <div
+                        class="absolute top-4 left-4 z-10 bg-gray-900 bg-opacity-70 text-white text-sm font-bold px-3 py-1 rounded-full">
+                        Before
+                    </div>
+
+                    <!-- After Badge -->
+                    <div
+                        class="absolute top-4 right-4 z-10 bg-teal-600 bg-opacity-70 text-white text-sm font-bold px-3 py-1 rounded-full">
+                        After
+                    </div>
+
+                    <div class="slider-handle">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div class="slider-line"></div>
+                </div>
             </div>
+
+            <!-- Gallery Item 3 -->
+            <div
+                class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="before-after-container relative w-full h-full">
+                    <!-- After Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_gb5yewgb5yewgb5y.png"
+                        alt="After Photo 3" class="after-image w-full h-full object-cover rounded-3xl">
+
+                    <!-- Before Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_jqtx71jqtx71jqtx.png"
+                        alt="Before Photo 3" class="before-image absolute top-0 left-0 h-full object-cover rounded-3xl"
+                        style="width: 50%;">
+
+                    <!-- Before Badge -->
+                    <div
+                        class="absolute top-4 left-4 z-10 bg-gray-900 bg-opacity-70 text-white text-sm font-bold px-3 py-1 rounded-full">
+                        Before
+                    </div>
+
+                    <!-- After Badge -->
+                    <div
+                        class="absolute top-4 right-4 z-10 bg-teal-600 bg-opacity-70 text-white text-sm font-bold px-3 py-1 rounded-full">
+                        After
+                    </div>
+
+                    <div class="slider-handle">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div class="slider-line"></div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 4 -->
+            <div
+                class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="before-after-container relative w-full h-full">
+                    <!-- After Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_ju4yklju4yklju4y.png"
+                        alt="After Photo 3" class="after-image w-full h-full object-cover rounded-3xl">
+
+                    <!-- Before Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_3zaa493zaa493zaa.png"
+                        alt="Before Photo 3" class="before-image absolute top-0 left-0 h-full object-cover rounded-3xl"
+                        style="width: 50%;">
+
+                    <!-- Before Badge -->
+                    <div
+                        class="absolute top-4 left-4 z-10 bg-gray-900 bg-opacity-70 text-white text-sm font-bold px-3 py-1 rounded-full">
+                        Before
+                    </div>
+
+                    <!-- After Badge -->
+                    <div
+                        class="absolute top-4 right-4 z-10 bg-teal-600 bg-opacity-70 text-white text-sm font-bold px-3 py-1 rounded-full">
+                        After
+                    </div>
+
+                    <div class="slider-handle">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div class="slider-line"></div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 5 -->
+            <div
+                class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="before-after-container relative w-full h-full">
+                    <!-- After Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_jdyuljdyuljdyulj.png"
+                        alt="After Photo 3" class="after-image w-full h-full object-cover rounded-3xl">
+
+                    <!-- Before Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_32qfpi32qfpi32qf.png"
+                        alt="Before Photo 3" class="before-image absolute top-0 left-0 h-full object-cover rounded-3xl"
+                        style="width: 50%;">
+
+                    <!-- Before Badge -->
+                    <div
+                        class="absolute top-4 left-4 z-10 bg-gray-900 bg-opacity-70 text-white text-sm font-bold px-3 py-1 rounded-full">
+                        Before
+                    </div>
+
+                    <!-- After Badge -->
+                    <div
+                        class="absolute top-4 right-4 z-10 bg-teal-600 bg-opacity-70 text-white text-sm font-bold px-3 py-1 rounded-full">
+                        After
+                    </div>
+
+                    <div class="slider-handle">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div class="slider-line"></div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 6 -->
+            <div
+                class="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="before-after-container relative w-full h-full">
+                    <!-- After Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_1k0xh31k0xh31k0x.png"
+                        alt="After Photo 3" class="after-image w-full h-full object-cover rounded-3xl">
+
+                    <!-- Before Image -->
+                    <img src="https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_ki3eu0ki3eu0ki3e.png"
+                        alt="Before Photo 3" class="before-image absolute top-0 left-0 h-full object-cover rounded-3xl"
+                        style="width: 50%;">
+
+                    <!-- Before Badge -->
+                    <div
+                        class="absolute top-4 left-4 z-10 bg-gray-900 bg-opacity-70 text-white text-sm font-bold px-3 py-1 rounded-full">
+                        Before
+                    </div>
+
+                    <!-- After Badge -->
+                    <div
+                        class="absolute top-4 right-4 z-10 bg-teal-600 bg-opacity-70 text-white text-sm font-bold px-3 py-1 rounded-full">
+                        After
+                    </div>
+
+                    <div class="slider-handle">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div class="slider-line"></div>
+                </div>
+            </div>
+
+            <!-- Add more gallery items here following the same structure -->
+
         </div>
     </section>
 
@@ -764,7 +689,8 @@
 
             <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="card overflow-hidden hover-lift cursor-pointer">
-                    <img src="https://plus.unsplash.com/premium_photo-1676677516331-8c152c715c82?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Instagram post 1" class="w-full h-64 object-cover">
+                    <img src="https://plus.unsplash.com/premium_photo-1676677516331-8c152c715c82?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Instagram post 1" class="w-full h-64 object-cover">
                     <div class="p-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">
@@ -777,7 +703,8 @@
                 </div>
 
                 <div class="card overflow-hidden hover-lift cursor-pointer">
-                    <img src="https://plus.unsplash.com/premium_photo-1676677522894-ecc12895dde5?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Instagram post 2" class="w-full h-64 object-cover">
+                    <img src="https://plus.unsplash.com/premium_photo-1676677522894-ecc12895dde5?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Instagram post 2" class="w-full h-64 object-cover">
                     <div class="p-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">
@@ -790,7 +717,8 @@
                 </div>
 
                 <div class="card overflow-hidden hover-lift cursor-pointer">
-                    <img src="https://cdn.pixabay.com/photo/2019/09/16/17/18/spa-4481538_640.jpg" alt="Instagram post 3" class="w-full h-64 object-cover">
+                    <img src="https://cdn.pixabay.com/photo/2019/09/16/17/18/spa-4481538_640.jpg" alt="Instagram post 3"
+                        class="w-full h-64 object-cover">
                     <div class="p-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">
@@ -803,7 +731,8 @@
                 </div>
 
                 <div class="card overflow-hidden hover-lift cursor-pointer">
-                    <img src="https://cdn.pixabay.com/photo/2018/04/03/23/04/woman-3288365_640.jpg" alt="Instagram post 4" class="w-full h-64 object-cover">
+                    <img src="https://cdn.pixabay.com/photo/2018/04/03/23/04/woman-3288365_640.jpg"
+                        alt="Instagram post 4" class="w-full h-64 object-cover">
                     <div class="p-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">
@@ -816,7 +745,8 @@
                 </div>
 
                 <div class="card overflow-hidden hover-lift cursor-pointer">
-                    <img src="https://cdn.pixabay.com/photo/2015/07/07/11/36/haircut-834280_640.jpg" alt="Instagram post 5" class="w-full h-64 object-cover">
+                    <img src="https://cdn.pixabay.com/photo/2015/07/07/11/36/haircut-834280_640.jpg"
+                        alt="Instagram post 5" class="w-full h-64 object-cover">
                     <div class="p-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">
@@ -829,7 +759,8 @@
                 </div>
 
                 <div class="card overflow-hidden hover-lift cursor-pointer">
-                    <img src="https://cdn.pixabay.com/photo/2020/08/08/15/05/hair-5473204_640.jpg" alt="Instagram post 6" class="w-full h-64 object-cover">
+                    <img src="https://cdn.pixabay.com/photo/2020/08/08/15/05/hair-5473204_640.jpg"
+                        alt="Instagram post 6" class="w-full h-64 object-cover">
                     <div class="p-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">
@@ -842,7 +773,8 @@
                 </div>
 
                 <div class="card overflow-hidden hover-lift cursor-pointer">
-                    <img src="https://cdn.pixabay.com/photo/2017/07/20/10/51/beauty-salon-2521943_640.jpg" alt="Instagram post 7" class="w-full h-64 object-cover">
+                    <img src="https://cdn.pixabay.com/photo/2017/07/20/10/51/beauty-salon-2521943_640.jpg"
+                        alt="Instagram post 7" class="w-full h-64 object-cover">
                     <div class="p-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">
@@ -855,7 +787,8 @@
                 </div>
 
                 <div class="card overflow-hidden hover-lift cursor-pointer">
-                    <img src="https://cdn.pixabay.com/photo/2019/03/08/20/17/beauty-salon-4043096_640.jpg" alt="Instagram post 8" class="w-full h-64 object-cover">
+                    <img src="https://cdn.pixabay.com/photo/2019/03/08/20/17/beauty-salon-4043096_640.jpg"
+                        alt="Instagram post 8" class="w-full h-64 object-cover">
                     <div class="p-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">
@@ -898,7 +831,8 @@
     <div id="product-modal" class="modal">
         <div class="modal-content">
             <div class="relative">
-                <button class="absolute top-4 right-4 z-10 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700" onclick="closeProductModal()">
+                <button class="absolute top-4 right-4 z-10 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+                    onclick="closeProductModal()">
                     <i class="fas fa-times"></i>
                 </button>
                 <img id="modal-product-image" src="/placeholder.svg" alt="" class="w-full h-64 object-cover">
@@ -911,7 +845,8 @@
 
                 <span id="modal-product-category" class="badge mb-6"></span>
 
-                <p id="modal-product-description" class="mb-6 leading-relaxed" style="color: var(--muted-foreground);"></p>
+                <p id="modal-product-description" class="mb-6 leading-relaxed" style="color: var(--muted-foreground);">
+                </p>
 
                 <div class="space-y-6">
                     <div>
@@ -936,7 +871,8 @@
 
                 <div class="flex gap-4 mt-8">
                     <button class="btn-primary flex-1">Add to Cart</button>
-                    <button class="flex-1 p-3 border border-gray-300 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                    <button
+                        class="flex-1 p-3 border border-gray-300 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                         Add to Wishlist
                         <i class="fas fa-heart ml-2"></i>
                     </button>
@@ -960,7 +896,8 @@
                     <i class="fas fa-gift text-6xl mb-6" style="color: var(--primary);"></i>
                     <h3 class="text-2xl font-bold mb-4">Signature Package</h3>
                     <p class="text-3xl font-bold mb-4" style="color: var(--primary);">$250</p>
-                    <p class="mb-6" style="color: var(--muted-foreground);">Includes cut, style, and premium treatment</p>
+                    <p class="mb-6" style="color: var(--muted-foreground);">Includes cut, style, and premium treatment
+                    </p>
                     <button class="btn-primary w-full">Purchase Voucher</button>
                 </div>
 
@@ -969,7 +906,8 @@
                     <i class="fas fa-gift text-6xl mb-6" style="color: var(--primary);"></i>
                     <h3 class="text-2xl font-bold mb-4">Luxury Experience</h3>
                     <p class="text-3xl font-bold mb-4" style="color: var(--primary);">$500</p>
-                    <p class="mb-6" style="color: var(--muted-foreground);">Complete transformation with color and styling</p>
+                    <p class="mb-6" style="color: var(--muted-foreground);">Complete transformation with color and
+                        styling</p>
                     <button class="btn-primary w-full">Purchase Voucher</button>
                 </div>
 
@@ -1074,7 +1012,8 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Special Requests</label>
-                            <textarea class="input" rows="4" placeholder="Any special requests or notes about your appointment..."></textarea>
+                            <textarea class="input" rows="4"
+                                placeholder="Any special requests or notes about your appointment..."></textarea>
                         </div>
 
                         <button type="submit" class="btn-primary w-full text-lg shimmer">
@@ -1229,7 +1168,8 @@
                             <i class="fas fa-sparkles ml-2"></i>
                         </button>
                     </form>
-                    <p class="text-sm mt-4" style="color: var(--muted-foreground);">We respect your privacy. Unsubscribe at any time.</p>
+                    <p class="text-sm mt-4" style="color: var(--muted-foreground);">We respect your privacy. Unsubscribe
+                        at any time.</p>
                 </div>
             </div>
         </div>
@@ -1304,807 +1244,22 @@
 
             <div style="border-top: 1px solid var(--border);" class="pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p style="color: var(--muted-foreground);" class="text-sm">© 2025 LuxeSalon. All rights reserved.</p>
+                    <p style="color: var(--muted-foreground);" class="text-sm">© 2025 LuxeSalon. All rights reserved.
+                    </p>
                     <div class="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" style="color: var(--muted-foreground);" class="hover:text-primary text-sm transition-colors">Privacy Policy</a>
-                        <a href="#" style="color: var(--muted-foreground);" class="hover:text-primary text-sm transition-colors">Terms of Service</a>
-                        <a href="#" style="color: var(--muted-foreground);" class="hover:text-primary text-sm transition-colors">Cookie Policy</a>
+                        <a href="#" style="color: var(--muted-foreground);"
+                            class="hover:text-primary text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" style="color: var(--muted-foreground);"
+                            class="hover:text-primary text-sm transition-colors">Terms of Service</a>
+                        <a href="#" style="color: var(--muted-foreground);"
+                            class="hover:text-primary text-sm transition-colors">Cookie Policy</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Data for the website
-        const services = [
-            {
-                name: "Signature Cut & Style",
-                price: "$150",
-                duration: "90 minutes",
-                description: "Precision cutting with personalized styling using premium products",
-                features: ["Consultation", "Wash & Cut", "Professional Styling", "Finishing Products"]
-            },
-            {
-                name: "Premium Color Service",
-                price: "$250",
-                duration: "3 hours",
-                description: "Expert color transformation with luxury color systems",
-                features: ["Color Consultation", "Custom Color Mix", "Professional Application", "Gloss Treatment"]
-            },
-            {
-                name: "Luxury Treatment",
-                price: "$120",
-                duration: "60 minutes",
-                description: "Deep conditioning treatment for ultimate hair health",
-                features: ["Hair Analysis", "Custom Treatment", "Scalp Massage", "Heat Therapy"]
-            },
-            {
-                name: "Bridal Package",
-                price: "$400",
-                duration: "4 hours",
-                description: "Complete bridal hair transformation for your special day",
-                features: ["Trial Session", "Wedding Day Styling", "Touch-up Kit", "Photography Ready"]
-            },
-            {
-                name: "Hair Extensions",
-                price: "$300",
-                duration: "2 hours",
-                description: "Premium human hair extensions for length and volume",
-                features: ["Consultation", "Color Matching", "Professional Application", "Styling Guide"]
-            },
-            {
-                name: "Men's Grooming",
-                price: "$80",
-                duration: "45 minutes",
-                description: "Sophisticated grooming services for the modern gentleman",
-                features: ["Precision Cut", "Beard Trim", "Hot Towel Treatment", "Styling"]
-            }
-        ];
-
-        const portfolioItems = [
-            {
-                before: "https://i.ibb.co/60Znpr2j/Gemini-Generated-Image-n5ppb9n5ppb9n5pp.png",
-                after: "https://i.ibb.co/LzkLT7Zw/Gemini-Generated-Image-vlw9w3vlw9w3vlw9.png",
-                caption: "Dramatic blonde transformation with balayage highlights"
-            },
-            {
-                before: "https://i.ibb.co/WCm7YNv/Gemini-Generated-Image-h04l3jh04l3jh04l.png",
-                after: "https://i.ibb.co/4gsr3WjG/Gemini-Generated-Image-5qms615qms615qms.png",
-                caption: "Rich brunette color with dimensional lowlights"
-            },
-            {
-                before: "https://i.ibb.co/CpWzTD0f/Gemini-Generated-Image-rnfl8mrnfl8mrnfl.png",
-                after: "https://i.ibb.co/d4Fhc0vW/Gemini-Generated-Image-xt0w5rxt0w5rxt0w.png",
-                caption: "Bold pixie cut transformation with textured styling"
-            },
-            {
-                before: "https://i.ibb.co/B536yXGK/Gemini-Generated-Image-jqtx71jqtx71jqtx.png",
-                after: "https://i.ibb.co/NdzMN9B7/Gemini-Generated-Image-gb5yewgb5yewgb5y.png",
-                caption: "Long layered cut with face-framing highlights"
-            }
-        ];
-
-        const teamMembers = [
-            {
-                name: "Sophia Williams",
-                role: "Bridal Specialist",
-                specialty: "Bridal & Special Events",
-                experience: "10+ years",
-                bio: "Sophia creates stunning bridal looks that photograph beautifully and last all day. Her romantic and elegant styling has been featured in numerous wedding publications.",
-                image: "https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_s0gz19s0gz19s0gz.png",
-                certifications: ["Bridal Beauty Certified", "Updo Specialist", "Airbrush Certified"]
-            },
-            {
-                name: "Isabella Rodriguez",
-                role: "Master Stylist & Creative Director",
-                specialty: "Color Specialist",
-                experience: "15+ years",
-                bio: "Isabella brings international expertise from Paris and Milan, specializing in avant-garde color techniques and precision cutting. Her artistic vision has earned recognition in top fashion magazines.",
-                image: "https://theuntoldpath.com/wp-content/uploads/2025/08/a-cinematic-portrait-photograph-of-a-you_ZJNS-femQYaPDtbJ39_GeA_g3mdywl1TvK2yF-gVqMYmA.jpeg",
-                certifications: ["Vidal Sassoon Advanced", "L'Oréal Master Colorist", "Redken Certified"]
-            },
-            {
-                name: "Marcus Chen",
-                role: "Senior Stylist",
-                specialty: "Men's Grooming",
-                experience: "12+ years",
-                bio: "Marcus is renowned for his expertise in men's styling and grooming. His precision and attention to detail have made him the go-to stylist for executives and celebrities.",
-                image: "https://theuntoldpath.com/wp-content/uploads/2025/08/a-young-korean-woman-with-long-wavy-blac_zMOGiMS8Tkm483F1m5Z47g_DcmrGmfnTxeUj2Aedkd66Q.jpeg",
-                certifications: ["Barber Institute Certified", "American Crew Specialist", "Aveda Trained"]
-            }
-            
-        ];
-
-        const testimonials = [
-            {
-                name: "Sarah Johnson",
-                role: "Fashion Executive",
-                content: "Isabella transformed my hair beyond my wildest dreams. The color is absolutely stunning and the cut is perfection. I've never felt more confident!",
-                rating: 5,
-                image: "https://theuntoldpath.com/wp-content/uploads/2025/08/469067128_1349575656031068_2222109960255578739_n.jpg"
-            },
-            {
-                name: "Michael Davis",
-                role: "Business Owner",
-                content: "Marcus is a true artist. His attention to detail and professionalism is unmatched. I wouldn't trust my hair to anyone else.",
-                rating: 5,
-                image: "https://theuntoldpath.com/wp-content/uploads/2025/08/Gemini_Generated_Image_s0gz19s0gz19s0gz.png"
-            },
-            {
-                name: "Emily Chen",
-                role: "Bride",
-                content: "Sophia made my wedding day absolutely perfect. My hair looked flawless from morning until night. She's incredibly talented and professional.",
-                rating: 5,
-                image: "https://theuntoldpath.com/wp-content/uploads/2025/08/ToDu3sJWSamyVelx2hqCSw.webp"
-            }
-        ];
-
-        const faqs = [
-            {
-                question: "How far in advance should I book my appointment?",
-                answer: "We recommend booking 2-3 weeks in advance for regular services and 4-6 weeks for color services or special events. For bridal services, we suggest booking 3-6 months ahead."
-            },
-            {
-                question: "What should I expect during my first visit?",
-                answer: "Your first visit includes a comprehensive consultation where we discuss your hair goals, lifestyle, and maintenance preferences. We'll analyze your hair condition and recommend the best services for you."
-            },
-            {
-                question: "Do you offer hair care product recommendations?",
-                answer: "Our stylists will recommend professional products specifically chosen for your hair type and the services you receive. We carry premium brands and offer take-home care instructions."
-            },
-            {
-                question: "What is your cancellation policy?",
-                answer: "We require 24-hour notice for cancellations or rescheduling. Late cancellations or no-shows may be subject to a fee. We understand emergencies happen and will work with you when possible."
-            },
-            {
-                question: "Do you offer consultations for major hair changes?",
-                answer: "Yes, we offer complimentary consultations for significant changes like dramatic cuts or color transformations. This ensures we're aligned on your vision before your appointment."
-            }
-        ];
-
-        const blogPosts = [
-            {
-                title: "2025 Hair Color Trends: What's Hot This Season",
-                excerpt: "Discover the latest color trends that are taking the hair world by storm, from dimensional brunettes to lived-in blondes.",
-                category: "Trends",
-                date: "March 15, 2025",
-                image: "https://cdn-kfjnl.nitrocdn.com/dzlwQVtbKqNMhKyfvsdzDFIULqPRYfEb/assets/images/optimized/rev-53b878f/www.natulique.com/wp-content/uploads/2024/10/Top-5-Hair-Colour-Trends-1.jpg"
-            },
-            {
-                title: "The Ultimate Guide to Hair Care Between Salon Visits",
-                excerpt: "Learn professional tips and tricks to maintain your salon-fresh look at home with the right products and techniques.",
-                category: "Hair Care",
-                date: "April 10, 2025",
-                image: "https://images.unsplash.com/photo-1717160675489-7779f2c91999?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            },
-            {
-                title: "Bridal Hair: Timeless Styles for Your Special Day",
-                excerpt: "Explore elegant bridal hairstyles that photograph beautifully and complement your wedding dress perfectly.",
-                category: "Bridal",
-                date: "May 5, 2025",
-                image: "https://images.unsplash.com/photo-1581674210501-c760093514e8?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            }
-        ];
-
-        const products = [
-            {
-                id: 1,
-                name: "Luxury Hydrating Shampoo",
-                price: "$45",
-                category: "Hair Care",
-                description: "Premium sulfate-free shampoo enriched with argan oil and keratin for ultimate hydration and shine.",
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH6Y1BLa4qoAmy_OP7TYiu_A0-9l3EkhT7CQ&s",
-                ingredients: ["Argan Oil", "Keratin", "Vitamin E", "Coconut Extract"],
-                benefits: ["Deep Hydration", "Color Protection", "Frizz Control", "Shine Enhancement"],
-                usage: "Apply to wet hair, massage gently into scalp and hair, rinse thoroughly. Follow with conditioner for best results."
-            },
-            {
-                id: 2,
-                name: "Intensive Repair Mask",
-                price: "$65",
-                category: "Treatment",
-                description: "Professional-grade hair mask that repairs damage and restores elasticity for healthier, stronger hair.",
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt_QxrxMjs2DXHa0PCwyOZlKPqkpq93IjBOQ&s",
-                ingredients: ["Protein Complex", "Hyaluronic Acid", "Botanical Oils", "Amino Acids"],
-                benefits: ["Damage Repair", "Strength Building", "Moisture Lock", "Elasticity Restore"],
-                usage: "Apply to clean, damp hair. Leave for 10-15 minutes, then rinse thoroughly. Use weekly for best results."
-            },
-            {
-                id: 3,
-                name: "Thermal Protection Spray",
-                price: "$35",
-                category: "Styling",
-                description: "Heat-activated spray that protects hair from thermal damage while adding volume and shine.",
-                image: "https://m.media-amazon.com/images/I/61fBfLnhyjL._SL1500_.jpg",
-                ingredients: ["Heat Shield Complex", "Silk Proteins", "UV Filters", "Antioxidants"],
-                benefits: ["Heat Protection", "Volume Boost", "UV Shield", "Frizz Control"],
-                usage: "Spray evenly on damp hair before blow-drying or using heat styling tools. Do not rinse."
-            },
-            {
-                id: 4,
-                name: "Signature Hair Oil",
-                price: "$55",
-                category: "Treatment",
-                description: "Lightweight finishing oil that adds incredible shine and smoothness without weighing hair down.",
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAftm7L9ev9I-d_Td0TtynEr4cvr1lTVkcdg&s",
-                ingredients: ["Moroccan Argan", "Jojoba Oil", "Vitamin Complex", "Essential Oils"],
-                benefits: ["Instant Shine", "Smooth Finish", "Flyaway Control", "Nourishment"],
-                usage: "Apply 1-2 drops to palms, rub together, and smooth over dry hair focusing on mid-lengths and ends."
-            }
-        ];
-
-        const locations = [
-            {
-                name: "Downtown Flagship",
-                address: "123 Luxury Avenue, Downtown District",
-                phone: "(555) 123-4567",
-                hours: "Mon-Sat: 9AM-8PM, Sun: 10AM-6PM",
-                image: "https://images.unsplash.com/photo-1626383137804-ff908d2753a2?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            },
-            {
-                name: "Uptown Boutique",
-                address: "456 Elite Street, Uptown Quarter",
-                phone: "(555) 234-5678",
-                hours: "Mon-Sat: 9AM-8PM, Sun: 10AM-6PM",
-                image: "https://images.unsplash.com/photo-1633681926035-ec1ac984418a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            },
-            {
-                name: "Westside Studio",
-                address: "789 Premium Plaza, Westside Mall",
-                phone: "(555) 345-6789",
-                hours: "Mon-Sat: 10AM-9PM, Sun: 11AM-7PM",
-                image: "https://images.unsplash.com/photo-1595944024804-733665a112db?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            }
-        ];
-
-        // State variables
-        let currentSlide = 0;
-        let currentTestimonial = 0;
-        let activeTeamTab = 0;
-        let isAutoPlay = true;
-        let isDark = false;
-        let isMenuOpen = false;
-
-        // Initialize the website
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeWebsite();
-            startAutoSlider();
-            startTestimonialSlider();
-        });
-
-
-        function toggleMobileDropdown() {
-    const dropdown = document.getElementById('mobile-dropdown');
-    const isOpen = dropdown.style.opacity === '1';
-    dropdown.style.opacity = isOpen ? '0' : '1';
-    dropdown.style.pointerEvents = isOpen ? 'none' : 'auto';
-    dropdown.style.transform = isOpen ? 'translateY(10px)' : 'translateY(0)';
-}
-
-        // Place this script after your DOMContentLoaded event
-
-document.addEventListener('DOMContentLoaded', function() {
-    const dropdownGroup = document.querySelector('.group');
-    const dropdownMenu = dropdownGroup.querySelector('.dropdown-menu');
-    let dropdownTimeout;
-
-    dropdownGroup.addEventListener('mouseenter', () => {
-        clearTimeout(dropdownTimeout);
-        dropdownMenu.style.opacity = '1';
-        dropdownMenu.style.pointerEvents = 'auto';
-        dropdownMenu.style.transform = 'translateY(0)';
-    });
-
-    dropdownGroup.addEventListener('mouseleave', () => {
-        dropdownTimeout = setTimeout(() => {
-            dropdownMenu.style.opacity = '0';
-            dropdownMenu.style.pointerEvents = 'none';
-            dropdownMenu.style.transform = 'translateY(10px)';
-        }, 100); // 200ms delay before hiding
-    });
-});
-
-        function initializeWebsite() {
-            populateServices();
-            populatePortfolio();
-            populateTeam();
-            populateTestimonials();
-            populateFAQs();
-            populateBlog();
-            populateProducts();
-            populateLocations();
-            setupEventListeners();
-            populateFormOptions();
-        }
-
-        function updateActiveMenu() {
-    const sections = ['home', 'about', 'services', 'portfolio', 'team', 'contact'];
-    const scrollPos = window.scrollY + 100; // Offset for header height
-
-    const bookSection = document.getElementById('book');
-    const contactSection = document.getElementById('contact');
-    const teamSection = document.getElementById('team');
-    const bookNowBtn = document.querySelector('.btn-primary.mobile-hidden');
-
-    // Helper: get section bottom
-    function getSectionBottom(section) {
-        return section ? section.offsetTop + section.offsetHeight : 0;
-    }
-
-    // If in Contact section
-    if (contactSection && scrollPos >= contactSection.offsetTop - 100 && scrollPos < getSectionBottom(contactSection)) {
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#contact') {
-                link.classList.add('active');
-            }
-        });
-        if (bookNowBtn) bookNowBtn.classList.remove('outline-book');
-        return;
-    }
-
-    // If in Book section (but not Contact)
-    if (bookSection && scrollPos >= bookSection.offsetTop - 100 && (!contactSection || scrollPos < contactSection.offsetTop - 100)) {
-        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-        if (bookNowBtn) bookNowBtn.classList.add('outline-book');
-        return;
-    }
-
-    // If after Team and before Book
-    if (
-        teamSection &&
-        bookSection &&
-        scrollPos >= getSectionBottom(teamSection) - 100 &&
-        scrollPos < bookSection.offsetTop - 100
-    ) {
-        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-        if (bookNowBtn) bookNowBtn.classList.remove('outline-book');
-        return;
-    }
-
-    // If after Contact (bottom of page)
-    if (contactSection && scrollPos >= getSectionBottom(contactSection) - 100) {
-        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-        if (bookNowBtn) bookNowBtn.classList.remove('outline-book');
-        return;
-    }
-
-    // Otherwise, activate the current section menu item
-    let activeSection = null;
-    for (let i = 0; i < sections.length; i++) {
-        const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPos) {
-            activeSection = sections[i];
-        }
-    }
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (activeSection && link.getAttribute('href') === `#${activeSection}`) {
-            link.classList.add('active');
-        }
-    });
-    if (bookNowBtn) bookNowBtn.classList.remove('outline-book');
-}
-
-window.addEventListener('scroll', updateActiveMenu);
-window.addEventListener('DOMContentLoaded', updateActiveMenu);
-
-        function populateServices() {
-            const servicesGrid = document.getElementById('services-grid');
-            servicesGrid.innerHTML = services.map(service => `
-                <div class="card hover-lift glass-effect" style="border-color: var(--primary);">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-semibold">${service.name}</h3>
-                        <span class="badge">${service.price}</span>
-                    </div>
-                    <p class="text-base mb-4" style="color: var(--muted-foreground);">${service.description}</p>
-                    <div class="flex items-center mb-4 text-sm" style="color: var(--muted-foreground);">
-                        <i class="fas fa-clock mr-2"></i>
-                        ${service.duration}
-                    </div>
-                    <div class="space-y-2 mb-6">
-                        ${service.features.map(feature => `
-                            <div class="flex items-center text-sm">
-                                <i class="fas fa-check-circle mr-2" style="color: var(--primary);"></i>
-                                ${feature}
-                            </div>
-                        `).join('')}
-                    </div>
-                    <button class="btn-primary w-full" onclick="scrollToSection('book')">Book Service</button>
-                </div>
-            `).join('');
-        }
-
-        function populatePortfolio() {
-            const portfolioGrid = document.getElementById('portfolio-grid');
-            portfolioGrid.innerHTML = portfolioItems.map(item => `
-                <div class="card overflow-hidden hover-lift">
-                    <div class="grid grid-cols-2">
-                        <div class="relative">
-                            <img src="${item.before}" alt="Before transformation" class="w-full h-64 object-cover">
-                            <div class="absolute top-4 left-4">
-                                <span class="badge" style="background: #ef4444; color: white;">Before</span>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <img src="${item.after}" alt="After transformation" class="w-full h-64 object-cover">
-                            <div class="absolute top-4 right-4">
-                                <span class="badge">After</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <p class="text-center font-medium">${item.caption}</p>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function populateTeam() {
-            const teamTabs = document.getElementById('team-tabs');
-            const teamContent = document.getElementById('team-content');
-
-            // Populate tabs
-            teamTabs.innerHTML = teamMembers.map((member, index) => `
-                <button class="team-tab ${index === 0 ? 'active' : ''}" onclick="switchTeamTab(${index})">
-                    ${member.name.split(' ')[0]}
-                </button>
-            `).join('');
-
-            // Populate content
-            teamContent.innerHTML = teamMembers.map((member, index) => `
-                <div class="team-content ${index === 0 ? 'active' : ''}">
-                    <div class="card overflow-hidden">
-                        <div class="grid lg:grid-cols-2 gap-8">
-                            <div class="p-8">
-                                <img src="${member.image}" alt="${member.name}" class="w-full h-96 object-cover rounded-lg mb-6">
-                            </div>
-                            <div class="p-8">
-                                <h3 class="text-3xl font-bold mb-2">${member.name}</h3>
-                                <p class="text-lg mb-2" style="color: var(--primary);">${member.role}</p>
-                                <p class="mb-4" style="color: var(--muted-foreground);">${member.specialty} • ${member.experience}</p>
-                                <p class="text-base mb-6 leading-relaxed">${member.bio}</p>
-                                <div class="space-y-4">
-                                    <h4 class="font-semibold text-lg">Certifications</h4>
-                                    <div class="flex flex-wrap gap-2">
-                                        ${member.certifications.map(cert => `
-                                            <span class="badge" style="background: var(--primary); opacity: 1; color: white;">${cert}</span>
-                                        `).join('')}
-                                    </div>
-                                </div>
-                                <button class="btn-primary mt-6" onclick="scrollToSection('book')">
-                                    Book with ${member.name.split(' ')[0]}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function populateTestimonials() {
-            const testimonialsContainer = document.getElementById('testimonials-container');
-            const testimonialDots = document.getElementById('testimonial-dots');
-
-            testimonialsContainer.innerHTML = testimonials.map((testimonial, index) => `
-                <div class="testimonial-slide ${index === 0 ? 'active' : ''}">
-                    <div class="card text-center p-8">
-                        <i class="fas fa-quote-left text-4xl mb-6" style="color: var(--primary);"></i>
-                        <p class="text-xl mb-6 italic leading-relaxed">"${testimonial.content}"</p>
-                        <div class="flex items-center justify-center space-x-4">
-                            <img src="${testimonial.image}" alt="${testimonial.name}" class="w-16 h-16 rounded-full object-cover">
-                            <div>
-                                <h4 class="font-semibold text-lg">${testimonial.name}</h4>
-                                <p style="color: var(--muted-foreground);">${testimonial.role}</p>
-                                <div class="flex justify-center mt-2">
-                                    ${Array(testimonial.rating).fill().map(() => `
-                                        <i class="fas fa-star" style="color: var(--primary);"></i>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-
-            testimonialDots.innerHTML = testimonials.map((_, index) => `
-                <button class="slider-dot ${index === 0 ? 'active' : ''}" onclick="changeTestimonial(${index})"></button>
-            `).join('');
-        }
-
-        function populateFAQs() {
-            const faqContainer = document.getElementById('faq-container');
-            faqContainer.innerHTML = faqs.map((faq, index) => `
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(${index})">
-                        <h3 class="text-lg font-semibold">${faq.question}</h3>
-                        <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-${index}"></i>
-                    </div>
-                    <div class="faq-answer" id="faq-answer-${index}">
-                        <p style="color: var(--muted-foreground);" class="leading-relaxed">${faq.answer}</p>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function populateBlog() {
-            const blogGrid = document.getElementById('blog-grid');
-            blogGrid.innerHTML = blogPosts.map(post => `
-                <div class="card overflow-hidden hover-lift">
-                    <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="badge mb-4" style="background: var(--accent); opacity: 1; color: var(--foreground);">${post.category}</span>
-                        <h3 class="text-xl font-semibold mb-3">${post.title}</h3>
-                        <p class="mb-4 leading-relaxed" style="color: var(--muted-foreground);">${post.excerpt}</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm" style="color: var(--muted-foreground);">${post.date}</span>
-                            <button class="text-sm hover:underline" style="color: var(--primary);">
-                                Read More
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function populateProducts() {
-            const productsGrid = document.getElementById('products-grid');
-            productsGrid.innerHTML = products.map(product => `
-                <div class="card overflow-hidden hover-lift cursor-pointer" onclick="openProductModal(${product.id})">
-                    <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover" style="border-radius: 10px;">
-                    <div class="p-6">
-                        <span class="badge mb-4" style="background: var(--accent); opacity: 1; color: var(--foreground);">${product.category}</span>
-                        <h3 class="text-xl font-semibold mb-2">${product.name}</h3>
-                        <p class="text-sm leading-relaxed mb-4" style="color: var(--muted-foreground);">${product.description}</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-2xl font-bold" style="color: var(--primary);">${product.price}</span>
-                            <button class="btn-primary text-sm px-4 py-2">View Details</button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function populateLocations() {
-            const locationsGrid = document.getElementById('locations-grid');
-            locationsGrid.innerHTML = locations.map(location => `
-                <div class="card overflow-hidden hover-lift">
-                    <img src="${location.image}" alt="${location.name}" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3">${location.name}</h3>
-                        <div class="space-y-2 text-sm" style="color: var(--muted-foreground);">
-                            <div class="flex items-start">
-                                <i class="fas fa-map-marker-alt mr-2 mt-0.5" style="color: var(--primary);"></i>
-                                ${location.address}
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-phone mr-2" style="color: var(--primary);"></i>
-                                ${location.phone}
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-clock mr-2 mt-0.5" style="color: var(--primary);"></i>
-                                ${location.hours}
-                            </div>
-                        </div>
-                        <button class="btn-primary w-full mt-4" onclick="scrollToSection('book')">
-                            Book at This Location
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function populateFormOptions() {
-            const serviceSelect = document.getElementById('service-select');
-            const stylistSelect = document.getElementById('stylist-select');
-
-            serviceSelect.innerHTML = '<option value="">Select a service</option>' + 
-                services.map(service => `<option value="${service.name}">${service.name}</option>`).join('');
-
-            stylistSelect.innerHTML = '<option value="">No preference</option>' + 
-                teamMembers.map(member => `<option value="${member.name}">${member.name}</option>`).join('');
-        }
-
-        function setupEventListeners() {
-            // Theme toggle
-            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-
-            // Mobile menu toggle
-            document.getElementById('mobile-menu-toggle').addEventListener('click', toggleMobileMenu);
-
-            // Autoplay toggle
-            document.getElementById('autoplay-toggle').addEventListener('click', toggleAutoplay);
-
-            // Form submissions
-            document.getElementById('booking-form').addEventListener('submit', handleBookingSubmit);
-            document.getElementById('contact-form').addEventListener('submit', handleContactSubmit);
-            document.getElementById('newsletter-form').addEventListener('submit', handleNewsletterSubmit);
-
-            // Navigation links (desktop and mobile)
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = this.getAttribute('href').substring(1);
-            scrollToSection(target);
-            if (isMenuOpen) toggleMobileMenu();
-        });
-    });
-
-    // Mobile dropdown items (services)
-    document.querySelectorAll('#mobile-menu .dropdown-item').forEach(item => {
-        item.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = this.getAttribute('href').substring(1);
-            scrollToSection(target);
-            if (isMenuOpen) toggleMobileMenu();
-        });
-    });
-        }
-
-        // Slider functions
-        function changeSlide(index) {
-            const slides = document.querySelectorAll('.hero-slide');
-            const dots = document.querySelectorAll('.slider-dot');
-
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
-
-            currentSlide = index;
-
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-        }
-
-        function nextSlide() {
-            const nextIndex = (currentSlide + 1) % 3;
-            changeSlide(nextIndex);
-        }
-
-        function startAutoSlider() {
-            setInterval(() => {
-                if (isAutoPlay) {
-                    nextSlide();
-                }
-            }, 5000);
-        }
-
-        // Testimonial functions
-        function changeTestimonial(index) {
-            const slides = document.querySelectorAll('.testimonial-slide');
-            const dots = document.querySelectorAll('#testimonial-dots .slider-dot');
-
-            slides[currentTestimonial].classList.remove('active');
-            dots[currentTestimonial].classList.remove('active');
-
-            currentTestimonial = index;
-
-            slides[currentTestimonial].classList.add('active');
-            dots[currentTestimonial].classList.add('active');
-        }
-
-        function nextTestimonial() {
-            const nextIndex = (currentTestimonial + 1) % testimonials.length;
-            changeTestimonial(nextIndex);
-        }
-
-        function startTestimonialSlider() {
-            setInterval(() => {
-                nextTestimonial();
-            }, 6000);
-        }
-
-        // Team functions
-        function switchTeamTab(index) {
-            const tabs = document.querySelectorAll('.team-tab');
-            const contents = document.querySelectorAll('.team-content');
-
-            tabs[activeTeamTab].classList.remove('active');
-            contents[activeTeamTab].classList.remove('active');
-
-            activeTeamTab = index;
-
-            tabs[activeTeamTab].classList.add('active');
-            contents[activeTeamTab].classList.add('active');
-        }
-
-        // FAQ functions
-        function toggleFAQ(index) {
-            const answer = document.getElementById(`faq-answer-${index}`);
-            const icon = document.getElementById(`faq-icon-${index}`);
-
-            answer.classList.toggle('active');
-            icon.style.transform = answer.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
-        }
-
-        // Product modal functions
-        function openProductModal(productId) {
-            const product = products.find(p => p.id === productId);
-            const modal = document.getElementById('product-modal');
-
-            document.getElementById('modal-product-image').src = product.image;
-            document.getElementById('modal-product-name').textContent = product.name;
-            document.getElementById('modal-product-price').textContent = product.price;
-            document.getElementById('modal-product-category').textContent = product.category;
-            document.getElementById('modal-product-description').textContent = product.description;
-            document.getElementById('modal-product-usage').textContent = product.usage;
-
-            document.getElementById('modal-product-ingredients').innerHTML = product.ingredients.map(ingredient => 
-                `<span class="badge" style="background: var(--muted); color: var(--foreground);">${ingredient}</span>`
-            ).join('');
-
-            document.getElementById('modal-product-benefits').innerHTML = product.benefits.map(benefit => 
-                `<div class="flex items-center text-sm">
-                    <i class="fas fa-check-circle mr-2" style="color: var(--primary);"></i>
-                    ${benefit}
-                </div>`
-            ).join('');
-
-            modal.classList.add('active');
-        }
-
-        function closeProductModal() {
-            document.getElementById('product-modal').classList.remove('active');
-        }
-
-        // Utility functions
-        function toggleTheme() {
-            isDark = !isDark;
-            document.documentElement.classList.toggle('dark', isDark);
-            document.getElementById('theme-icon').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        function toggleMobileMenu() {
-            isMenuOpen = !isMenuOpen;
-            document.getElementById('mobile-menu').classList.toggle('active', isMenuOpen);
-            document.getElementById('mobile-menu-icon').className = isMenuOpen ? 'fas fa-times' : 'fas fa-bars';
-        }
-
-        function toggleAutoplay() {
-            isAutoPlay = !isAutoPlay;
-            document.getElementById('autoplay-icon').className = isAutoPlay ? 'fas fa-pause' : 'fas fa-play';
-        }
-
-        function scrollToSection(sectionId) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-        const headerHeight = 80;
-        const elementPosition = element.offsetTop - headerHeight;
-        window.scrollTo({
-            top: elementPosition,
-            behavior: 'smooth'
-        });
-    }
-    // Close mobile menu if open
-    if (isMenuOpen) {
-        toggleMobileMenu();
-    }
-}
-
-        // Form handlers
-        function handleBookingSubmit(e) {
-            e.preventDefault();
-            alert('Thank you for your booking request! We will contact you shortly to confirm your appointment.');
-        }
-
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you within 24 hours.');
-        }
-
-        function handleNewsletterSubmit(e) {
-            e.preventDefault();
-            alert('Thank you for subscribing to our newsletter!');
-        }
-
-        // Close modal when clicking outside
-        document.addEventListener('click', function(e) {
-            const modal = document.getElementById('product-modal');
-            if (e.target === modal) {
-                closeProductModal();
-            }
-        });
-    </script>
+   <script src="script.js"></script>
 </body>
+
 </html>
